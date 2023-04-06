@@ -1,0 +1,9 @@
+input:focus {
+    box-shadow: none !important;
+    border-color: black !important;
+  }
+  
+  .btn {
+    font-size: 14px !important;
+  }
+  

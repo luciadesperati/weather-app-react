@@ -1,26 +1,21 @@
-import logo from './logo.svg';
 import './App.css';
+
+import Search from "./Search";
+import Weather from "./Weather";
+import Footer from "./Footer";
+
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Test
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="col-4-lg col-4-md offset-3-lg offset-3-md">
+        <Search />
+        <Weather />
+        <Footer />
+      </div>
     </div>
   );
 }
+
 
 export default App;

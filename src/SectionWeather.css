@@ -1,0 +1,48 @@
+button:hover {
+    font-weight: bold;
+  }
+  
+  .temperature {
+    font-size: 60px;
+    font-family: Helvetica, sans-serif;
+    margin-top: -20px;
+  }
+  
+  .location {
+    font-size: x-large;
+    font-family: Helvetica, sans-serif;
+    font-weight: 400;
+    color: black;
+    text-transform: capitalize;
+  }
+  
+  .weather-data,
+  .date {
+    font-size: small;
+    font-family: Helvetica, sans-serif;
+    font-weight: 300;
+    color: #888888;
+  }
+  
+  .location-icon,
+  .date-icon {
+    width: 20px;
+    text-align: center;
+    color: #aeaeae;
+  }
+  
+  .button-temp {
+    border: none;
+    background: transparent;
+  }
+  
+  .btn-check:focus,
+  .btn:focus {
+    font-weight: 900;
+    box-shadow: none !important;
+  }
+  
+  .weather-description {
+    text-transform: capitalize;
+  }
+  
