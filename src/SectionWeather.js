@@ -1,7 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
+
+import axios from "axios";
 import "./SectionWeather.css";
 
 export default function SectionWeather() {
+const [ready, setReady] = useState(false);
+const [weatherData, setWeatherData] = useState({});
+
+function handleResponse(response) {
+  console.log(response.data);
+  setWeatherData({
+    // city: ,
+    icon: response.data.condition.icon_url,
+    condition: response.data.condition.description,
+    temperature: response.data.temperature.current,
+    humidity: response.data.temperature.humidity,
+    wind: response.data.wind.speed,
+  });
+  setReady(true);
+} 
+
+if (ready) {
   return (
     <div className="card shadow-lg border-0 py-4 my-4 px-2 text-center">
       <div className="card-body p-4">
@@ -11,11 +30,11 @@ export default function SectionWeather() {
               alt="weather"
               className="emoji"
               id="weather-icon"
-              src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/clear-sky-day.png"
+              src={weatherData.icon}
             />
             <div className="d-flex align-items-start justify-content-center">
               <p id="temperature" className="temperature mb-0">
-                19
+                {Math.round(weatherData.temperature)}
               </p>
               <div className="btn-group btn-group-toggle d-flex">
                 <p>°C</p>
@@ -39,11 +58,11 @@ export default function SectionWeather() {
             </div>
             <div className="weather-data">
               <p className="mb-2 weather-description" id="weather-description">
-                Clear Sky
+                {weatherData.condition}
               </p>
               <p className="mb-4">
-                Humidity: <span id="humidity"> 75</span>% ⸺ Wind:
-                <span id="wind">4</span> km/h
+                Humidity: <span id="humidity"> {weatherData.humidity}</span>% ⸺ Wind:
+                <span id="wind">{weatherData.wind}</span> km/h
               </p>
             </div>
             <div className="location mb-2 mt-4">
@@ -63,4 +82,15 @@ export default function SectionWeather() {
       </div>
     </div>
   );
+            }  else {
+    const apiKey = "2b6be0a88f02eco343b0c579f343cbt9";
+    const query = "Brighton";
+    const apiUrl = `https://api.shecodes.io/weather/v1/current?query=${query}&key=${apiKey}&unit=metric`;
+    axios.get(apiUrl).then(handleResponse);
+
+    return "Loading...";
+    }
+    
+
+
 }
