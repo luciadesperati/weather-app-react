@@ -8,7 +8,7 @@ import Footer from "./Footer";
 function App() {
   return (
     <div className="App">
-      <div className="col-4-lg col-4-md offset-3-lg offset-3-md">
+      <div className="col-sm-12 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
         <Search />
         <Weather />
         <Footer />
