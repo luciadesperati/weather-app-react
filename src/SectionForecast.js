@@ -1,30 +1,49 @@
-import React from "react";
+import React, { useState } from "react";
 import "./SectionForecast.css";
-import WeatherIcon from "./WeatherIcon";
+import axios from "axios";
+import WeatherForecastDay from "./WeatherForecastDay";
 
 export default function SectionForecast(props) {
-  return (
-    <div className="card shadow-lg border-0 py-4 px-2 text-center">
-      <div className="pt-4 mt-3 row forecast d-flex">
-        <div className="col-1"></div>`
-        <div className="col">
-          <p className="weekday-list mb-0">Mon</p>
-          <p className="day-list">4 Apr</p>
-          <div className="mt-4">
-          <WeatherIcon size={35} condition={props.condition}/>
+  const [loaded, setLoaded] = useState(false);
+  const [forecast, setForecast] = useState(null);
+
+  function handleResponse(response) {
+    console.log(response.data);
+    setForecast(response.data.daily);
+    setLoaded(true);
+  };
+
+  if(loaded) {
+console.log(forecast);
+
+    return (
+      <div className="card shadow-lg border-0 py-4 px-0 text-center">
+        <div className="pt-2 py-0 mt-3 row forecast d-flex flex-row justify-content-center">
+          <div className="col-2">
+            <WeatherForecastDay data={forecast[0]} />
           </div>
-          {/* <img
-            className="emoji-list"
-            id="weather-icon-list"
-            src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/scattered-clouds-day.png"
-            alt="icon"
-          /> */}
-          <span className="d-flex justify-content-center">
-            <p className="temperature-min">10</p>
-            <p className="temperature-max">20</p>
-          </span>
+          <div className="col-2">
+            <WeatherForecastDay data={forecast[1]} />
+          </div>
+          <div className="col-2">
+            <WeatherForecastDay data={forecast[2]} />
+          </div>
+          <div className="col-2">
+            <WeatherForecastDay data={forecast[3]} />
+          </div>
+          <div className="col-2">
+            <WeatherForecastDay data={forecast[4]} />
+          </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  } else {
+    let apiKey = "2b6be0a88f02eco343b0c579f343cbt9";
+    let apiUrl = `https://api.shecodes.io/weather/v1/forecast?query=${props.city}&key=${apiKey}&units=metric`;
+    
+    axios.get(apiUrl).then(handleResponse);
+   
+    return null;
+  
+}
 }

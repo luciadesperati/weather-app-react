@@ -32,8 +32,9 @@ function handleResponse(response) {
   setWeatherData({
     ready: true,
     city: cityName,
-    icon: response.data.condition.icon_url,
-    condition: response.data.condition.description,
+    // icon: response.data.condition.icon_url,
+    description: response.data.condition.description,
+    icon: response.data.condition.icon,
     temperature: response.data.temperature.current,
     humidity: response.data.temperature.humidity,
     wind: response.data.wind.speed,
@@ -62,14 +63,15 @@ if (weatherData.ready) {
         <div className="card-body p-4">
           <div className="row">
             <div className="col">
-              <WeatherIcon size={55} condition={weatherData.condition} />
-              
-              <div className="d-flex align-items-start justify-content-center">
+            <div className="ml-2 mb-4">
+              <WeatherIcon size={55} icon={weatherData.icon} />
+              </div>
+              <div className="d-flex justify-content-center">
                 <WeatherTemperature celTemperature={weatherData.temperature} />
               </div>
               <div className="weather-data">
                 <p className="mb-2 weather-description" id="weather-description">
-                  {weatherData.condition}
+                  {weatherData.description}
                 </p>
                 <p className="mb-4">
                   Humidity: <span id="humidity"> {weatherData.humidity}</span>% ⸺ Wind:
@@ -92,7 +94,7 @@ if (weatherData.ready) {
           </div>
         </div>
       </div>
-      <SectionForecast data={weatherData} condition={weatherData.condition }/>
+      <SectionForecast city={weatherData.city} icon={weatherData.icon}/>
       </>
   );
             }  else {

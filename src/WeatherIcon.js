@@ -5,20 +5,28 @@ export default function WeatherIcon(props) {
 console.log(props.condition);
 
     const codeMapping = {
-    "clear sky": "CLEAR_DAY",
-    "few clouds": "PARTLY_CLOUDY_DAY",
-    "scattered clouds": "CLOUDY",
-    "overcast clouds": "CLOUDY",
-    "broken clouds" : "PARTLY_CLOUDY_DAY",
-    "shower rain" : "RAIN",
-    "rain" : "RAIN",
-    "thunderstorm" : "RAIN",
-    "snow" : "SNOW",
-    "mist" : "WIND"
+    "clear-sky-day": "CLEAR_DAY",
+    "clear-sky-night": "CLEAR_NIGHT",
+    "few-clouds-day": "PARTLY_CLOUDY_DAY",
+    "ew-clouds-night": "PARTLY_CLOUDY_DAY",
+    "scattered-clouds-day": "CLOUDY",
+    "scattered-clouds-night": "CLOUDY",
+    "broken-clouds-day": "CLOUDY",
+    "broken-clouds-night": "CLOUDY",
+    "shower-rain-day" : "RAIN",
+    "shower-rain-night" : "RAIN",
+    "rain-day" : "RAIN",
+    "rain-night" : "RAIN",
+    "thunderstorm-day" : "RAIN",
+    "thunderstorm-night" : "RAIN",
+    "snow-day" : "SNOW",
+    "snow-night" : "SNOW",
+    "mist-day" : "WIND",
+    "mist-night" : "WIND"
     }
 
     return (
-        <div className="mb-3">
+        <div className="d-flex justify-content-center">
         {/* <img
                 alt={props.alt}
                 className="emoji"
@@ -26,7 +34,7 @@ console.log(props.condition);
                 src={props.icon} /> */}
 
 <ReactAnimatedWeather
-    icon={codeMapping[props.condition]}
+    icon={codeMapping[props.icon]}
     color="black"
     size={props.size}
     animate={true}
