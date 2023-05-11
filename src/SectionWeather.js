@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import "./SectionWeather.css";
 
+import WeatherTemperature from "./WeatherTemperature";
 import WeatherIcon from "./WeatherIcon";
 import FormattedDate from "./FormattedDate";
 
@@ -63,12 +64,7 @@ if (weatherData.ready) {
               <WeatherIcon icon={weatherData.icon} condition={weatherData.condition} />
               
               <div className="d-flex align-items-start justify-content-center">
-                <p id="temperature" className="temperature mb-0">
-                  {Math.round(weatherData.temperature)}
-                </p>
-                <div className="btn-group btn-group-toggle d-flex">
-                  <p>°C</p>
-                </div>
+                <WeatherTemperature celTemperature={weatherData.temperature} />
               </div>
               <div className="weather-data">
                 <p className="mb-2 weather-description" id="weather-description">
