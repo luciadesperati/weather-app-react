@@ -8,7 +8,7 @@ export default function CardWeather(props) {
   return (
     <div>
       <SectionWeather cityName={props.cityName}/>
-      <SectionForecast />
+      {/* <SectionForecast /> */}
     </div>
   );
 }
