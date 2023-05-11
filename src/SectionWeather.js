@@ -6,6 +6,7 @@ import "./SectionWeather.css";
 import WeatherTemperature from "./WeatherTemperature";
 import WeatherIcon from "./WeatherIcon";
 import FormattedDate from "./FormattedDate";
+import SectionForecast from "./SectionForecast"
 
 export default function SectionWeather(props) {
 const [cityName, setCityName] = useState("London");
@@ -61,7 +62,7 @@ if (weatherData.ready) {
         <div className="card-body p-4">
           <div className="row">
             <div className="col">
-              <WeatherIcon icon={weatherData.icon} condition={weatherData.condition} />
+              <WeatherIcon size={55} condition={weatherData.condition} />
               
               <div className="d-flex align-items-start justify-content-center">
                 <WeatherTemperature celTemperature={weatherData.temperature} />
@@ -90,7 +91,9 @@ if (weatherData.ready) {
             </div>
           </div>
         </div>
-      </div></>
+      </div>
+      <SectionForecast data={weatherData} condition={weatherData.condition }/>
+      </>
   );
             }  else {
     search();
