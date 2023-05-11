@@ -24,7 +24,7 @@ export default function WeatherTemperature(props) {
                 {/* <p>°C</p> */}
                 <button
               className="btn button-temp my-0 mx-1 p-1"
-              autofocus="autofocus"
+              autoFocus="autofocus"
               id="temp-cel"
               href="#"
             >
@@ -54,7 +54,7 @@ return  (
         {/* <p>°C</p> */}
         <button
       className="btn button-temp my-0 mx-1 p-1"
-      autofocus="autofocus"
+      autoFocus="autofocus"
       id="temp-cel"
       href="#"
       onClick={showCel}

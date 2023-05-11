@@ -8,6 +8,7 @@ console.log(props.condition);
     "clear sky": "CLEAR_DAY",
     "few clouds": "PARTLY_CLOUDY_DAY",
     "scattered clouds": "CLOUDY",
+    "overcast clouds": "CLOUDY",
     "broken clouds" : "PARTLY_CLOUDY_DAY",
     "shower rain" : "RAIN",
     "rain" : "RAIN",
