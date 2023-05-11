@@ -4,12 +4,12 @@ import React from "react";
 import SectionForecast from "./SectionForecast";
 import SectionWeather from "./SectionWeather";
 
-export default function CardWeather() {
-
+export default function CardWeather(props) {
   return (
     <div>
-      <SectionWeather />
+      <SectionWeather cityName={props.cityName}/>
       <SectionForecast />
     </div>
   );
 }
+

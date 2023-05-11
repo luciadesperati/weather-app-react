@@ -3,24 +3,26 @@ import React, { useState } from "react";
 import axios from "axios";
 import "./SectionWeather.css";
 
-export default function SectionWeather() {
-const [ready, setReady] = useState(false);
-const [weatherData, setWeatherData] = useState({});
+import FormattedDate from "./FormattedDate";
+
+export default function SectionWeather(props) {
+const [weatherData, setWeatherData] = useState({ ready: false });
 
 function handleResponse(response) {
   console.log(response.data);
   setWeatherData({
-    // city: ,
+    ready: true,
+    city: props.cityName,
     icon: response.data.condition.icon_url,
     condition: response.data.condition.description,
     temperature: response.data.temperature.current,
     humidity: response.data.temperature.humidity,
     wind: response.data.wind.speed,
+    date: new Date(response.data.time * 1000)
   });
-  setReady(true);
 } 
 
-if (ready) {
+if (weatherData.ready) {
   return (
     <div className="card shadow-lg border-0 py-4 my-4 px-2 text-center">
       <div className="card-body p-4">
@@ -67,13 +69,13 @@ if (ready) {
             </div>
             <div className="location mb-2 mt-4">
               <p id="city-name" className="location d-inline">
-                Brighton
+                {weatherData.city}
               </p>
             </div>
             <div className="date mb-2">
               <i className="fa-regular fa-calendar date-icon"></i>
               <p id="date-display" className="date d-inline mb-4">
-                Monday, 6 March 2023
+                <FormattedDate date={weatherData.date} />
               </p>
             </div>
             <div id="weather-forecast"></div>
@@ -84,8 +86,7 @@ if (ready) {
   );
             }  else {
     const apiKey = "2b6be0a88f02eco343b0c579f343cbt9";
-    const query = "Brighton";
-    const apiUrl = `https://api.shecodes.io/weather/v1/current?query=${query}&key=${apiKey}&unit=metric`;
+    const apiUrl = `https://api.shecodes.io/weather/v1/current?query=${props.cityName}&key=${apiKey}&unit=metric`;
     axios.get(apiUrl).then(handleResponse);
 
     return "Loading...";
